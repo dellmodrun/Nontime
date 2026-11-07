@@ -15,7 +15,7 @@
     $("p-name").textContent = name.value || "Coin name";
     var t = tick.value.toUpperCase().replace(/[^A-Z0-9]/g, "");
     $("p-tick").textContent = "$" + (t || "TICKER") + " · paired with $OT";
-    $("p-page").textContent = "overtime.fun/" + (t.toLowerCase() || "ticker");
+    $("p-page").textContent = "nontime.fun/" + (t.toLowerCase() || "ticker");
     [["name", name], ["tick", tick], ["desc", desc]].forEach(function (p) {
       var c = document.querySelector('[data-count="' + p[0] + '"]');
       c.textContent = p[1].value.length + "/" + c.dataset.max;
