@@ -38,3 +38,11 @@ fs.writeFileSync(cssFile,css);
 
 const pagesJs=path.join(root,"assets/static/immutable/chunks/pages.js");
 fs.writeFileSync(pagesJs,fs.readFileSync(pagesJs,"utf8").replaceAll('overtime.fun/','nontime.fun/'));
+
+const sceneFile=path.join(root,"assets/static/immutable/chunks/15aj5z832go4j.js");
+let scene=fs.readFileSync(sceneFile,"utf8");
+scene=scene
+  .replace('fillText("overtime",10,100)','fillText("nontime",10,100)')
+  .replace('fillText("OVERTIME NOW",62,47)','fillText("NONTIME NOW",62,47)')
+  .replace('["gn","still up","overtime","up only"]','["gn","still up","nontime","up only"]');
+fs.writeFileSync(sceneFile,scene);
