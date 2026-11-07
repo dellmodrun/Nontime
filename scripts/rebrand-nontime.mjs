@@ -19,6 +19,17 @@ for(const relative of htmlFiles){
     .replace(/<link rel="preload" as="image" href="\/Nontime\/assets\/static\/immutable\/chunks\/mark\.svg">/g,'<link rel="preload" as="image" href="/Nontime/nontime-logo.png">')
     .replace(/<link rel="icon" href="\/Nontime\/assets\/static\/immutable\/chunks\/mark\.svg" type="image\/svg\+xml">/g,'<link rel="icon" href="/Nontime/nontime-logo.png" type="image/png">')
     .replace(/<span>overtime\.fun<\/span>/g,'<span>nontime.fun</span>');
+  if(relative==="index.html"){
+    html=html
+      .replaceAll("overtime · some clock out, your coin's crew works overtime","Nontime")
+      .replaceAll('/icon.svg?icon.1k4-6peszzq5x.svg','/Nontime/nontime-logo.png')
+      .replaceAll('/apple-icon.png?apple-icon.1up0wrl3g5uk-.png','/Nontime/nontime-logo.png')
+      .replace('<link rel="icon" href="/Nontime/nontime-logo.png" sizes="any" type="image/svg+xml">','<link rel="icon" href="/Nontime/nontime-logo.png" sizes="any" type="image/png">')
+      .replaceAll('\\"property\\":\\"og:title\\",\\"content\\":\\"overtime\\"','\\"property\\":\\"og:title\\",\\"content\\":\\"Nontime\\"')
+      .replaceAll('\\"property\\":\\"og:site_name\\",\\"content\\":\\"overtime\\"','\\"property\\":\\"og:site_name\\",\\"content\\":\\"Nontime\\"')
+      .replaceAll('\\"name\\":\\"twitter:title\\",\\"content\\":\\"overtime\\"','\\"name\\":\\"twitter:title\\",\\"content\\":\\"Nontime\\"');
+    html=html.replace('\\"rel\\":\\"icon\\",\\"href\\":\\"/Nontime/nontime-logo.png\\",\\"sizes\\":\\"any\\",\\"type\\":\\"image/svg+xml\\"','\\"rel\\":\\"icon\\",\\"href\\":\\"/Nontime/nontime-logo.png\\",\\"sizes\\":\\"any\\",\\"type\\":\\"image/png\\"');
+  }
   fs.writeFileSync(file,html);
 }
 
@@ -46,3 +57,11 @@ scene=scene
   .replace('fillText("OVERTIME NOW",62,47)','fillText("NONTIME NOW",62,47)')
   .replace('["gn","still up","overtime","up only"]','["gn","still up","nontime","up only"]');
 fs.writeFileSync(sceneFile,scene);
+
+const providerFile=path.join(root,"assets/static/immutable/chunks/1l2briux5llnv.js");
+let provider=fs.readFileSync(providerFile,"utf8");
+provider=provider
+  .replace('src:"/mark.svg",alt:"overtime"','src:"/Nontime/nontime-logo.png",alt:"Nontime"')
+  .replace('landingHeader:"Put your coin on overtime"','landingHeader:"Connect to Nontime"')
+  .replace('loginMessage:"Some clock out. Put your coin on overtime. Connect a Solana wallet."','loginMessage:"Connect a Solana wallet to continue on Nontime."');
+fs.writeFileSync(providerFile,provider);
