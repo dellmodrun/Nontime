@@ -9,3 +9,9 @@
   function choose(){styles();return new Promise((resolve,reject)=>{let layer=document.createElement("div");layer.className="ntwl";let close=()=>{layer.remove();reject(Error("Wallet connection cancelled."))};layer.innerHTML=`<section class="ntwd" role="dialog" aria-modal="true" aria-label="Connect a Solana wallet"><div class="ntwh"><div><b>Connect a Solana wallet</b><p>Choose an installed wallet to continue on Solana.</p></div><button class="ntwc" aria-label="Close">×</button></div><div class="ntlist"></div><p class="ntnote">Nontime never receives your private key. Your wallet approves every signature.</p></section>`;layer.querySelector(".ntwc").onclick=close;layer.onclick=e=>{if(e.target===layer)close()};let list=layer.querySelector(".ntlist");for(let [name,get,install] of wallets){let provider=get(),row=document.createElement(provider?"button":"a");row.className="ntwo";if(provider)row.type="button";else{row.href=install;row.target="_blank";row.rel="noopener noreferrer"}row.innerHTML=`<span class="ntwn"><span class="ntwm">${name.slice(0,2).toUpperCase()}</span>${name}</span><span class="ntws">${provider?"Detected":"Install"}</span>`;if(provider)row.onclick=()=>{layer.remove();resolve({provider,name})};list.appendChild(row)}document.body.appendChild(layer)})}
   window.NontimeWallet={async connect(){let {provider,name}=await choose(),result=await provider.connect(),publicKey=result?.publicKey||provider.publicKey;if(!publicKey)throw Error(`${name} did not return an address.`);return{provider,name,address:publicKey.toString()}}};
 })();
+
+if (location.pathname === "/" || location.pathname === "/index.html" || location.pathname === "/Nontime/") {
+  const homepageVideo = document.createElement("script");
+  homepageVideo.src = "/homepage-video.js";
+  document.head.appendChild(homepageVideo);
+}
