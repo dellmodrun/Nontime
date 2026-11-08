@@ -1,4 +1,4 @@
-/* Overtime sub-pages: only what the saved site CSS doesn't already cover. */
+/* Nontime sub-pages: only what the saved site CSS doesn't already cover. */
 .hero .art{position:absolute;inset:0;overflow:hidden;pointer-events:none}
 .hero .art svg{position:absolute;right:0;top:0;width:min(1240px,100%);height:100%}
 .hero .wrap{position:relative;z-index:1}
